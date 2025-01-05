@@ -7,7 +7,7 @@ Choose the board size and add names to your players to start. Get ready for a me
 
 Are you ready to demonstrate your skills? Start the game and show your friends who is the champion of this digital classic board game!
 
-The only thing you need to do is enter this link to start playing (LINKKKKK)
+[The only thing you need to do is enter this link to start playing](https://davidcosta92.github.io/practice-3-frontend-jala/) 
 
 
 ## practice-3
