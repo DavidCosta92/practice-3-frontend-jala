@@ -1,7 +1,18 @@
-# practice-3
+
+# Welcome to the classic strategic game of Tic Tac Toe!
+
+In this exciting battle of wits, two players face off seeking to get three or more in a row.
+
+Choose the board size and add names to your players to start. Get ready for a mental showdown that will keep you on edge until the end!
+
+Are you ready to demonstrate your skills? Start the game and show your friends who is the champion of this digital classic board game!
+
+The only thing you need to do is enter this link to start playing (LINKKKKK)
+
+
+## practice-3
 
 Create a tic tac toe game
-
 
 ### Requirements
 

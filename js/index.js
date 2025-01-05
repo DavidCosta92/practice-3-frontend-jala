@@ -1,5 +1,4 @@
 // @ts-nocheck
-
 let squares = []
 const board = document.getElementsByClassName("board")[0];
 const messageContainer = document.getElementsByClassName("messageContainer")[0];
