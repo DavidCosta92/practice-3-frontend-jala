@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 2 - Tic tac toe</title>
+    <link rel="stylesheet" type="text/css" href="./index.css">
+</head>
+<body>
+
+    <div class="app">
+        <span class="title">
+            <p>Tic tac toe</p>
+        </span>
+
+        <div class="game">
+            <div class="board">
+
+            </div>
+            <dialog class="silverShadow">
+                <form method="dialog" onsubmit=setPlayersNames()>
+                    <p>Agrega el nombre del jugador 1</p>
+                    <input type="text" id="inputName1">
+                    <p>Agrega el nombre del jugador 2</p>
+                    <input type="text" id="inputName2">
+
+                    <p>Indica el tamaño del tablero</p>
+                    <input type="number" id="gameSize" min="2" max="10">
+    
+                    <div>
+                        <button value="default" autofocus button>Iniciar</button>
+                    </div>
+                </form>
+            </dialog>
+        </div>
+        
+
+        <div class="sign">
+            <div class="messageContainer">
+                <p class="message"></p>
+                <div>
+                    <p class="player"></p>
+                </div>
+            </div>
+            <div class="buttons">
+                <span>
+                    <?xml version="1.0" encoding="utf-8"?>
+                    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" onclick=init() id="initGame">
+                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="M15.4137 10.941C16.1954 11.4026 16.1954 12.5974 15.4137 13.059L10.6935 15.8458C9.93371 16.2944 9 15.7105 9 14.7868L9 9.21316C9 8.28947 9.93371 7.70561 10.6935 8.15419L15.4137 10.941Z" stroke="currentColor" stroke-width="1.5"/>
+                    </svg>
+                </span>
+                <span class="restart" onclick=restarGame()>
+                    <?xml version="1.0" ?><svg fill="none" height="30" stroke-width="1.5" viewBox="0 0 24 24" width="30" xmlns="http://www.w3.org/2000/svg" ><g clip-path="url(#clip0_1735_6488)"><path d="M6.67742 20.5673C2.53141 18.0212 0.758026 12.7584 2.71678 8.1439C4.87472 3.0601 10.7453 0.68822 15.8291 2.84617C20.9129 5.00412 23.2848 10.8747 21.1269 15.9585C20.2837 17.945 18.8736 19.5174 17.1651 20.5673" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M17 16V20.4C17 20.7314 17.2686 21 17.6 21H22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 22.01L12.01 21.9989" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></g><defs><clipPath id="clip0_1735_6488"><rect fill="white" height="24" stroke-width="1.5" width="24"/></clipPath></defs></svg>
+                </span>
+
+                <span onclick=newGame()>
+                    <?xml version="1.0" ?>
+                    <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+                    <svg width="30" height="30" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <style>.c{fill:none;stroke:#07870b;stroke-linecap:round;stroke-linejoin:round;}</style>
+                    </defs>
+                    <g id="a"/>
+                    <g id="b">
+                    <line class="c" x1="4.5" x2="19.5" y1="12" y2="12"/>
+                    <line class="c" x1="12" x2="12" y1="4.5" y2="19.5"/>
+                    <circle class="c" cx="12" cy="12" r="10"/>
+                    </g>
+                    </svg>
+                </span>
+
+            </div>
+        </div>
+    </div>
+
+    
+</body>
+    <script src="js/index.js"></script>
+</html>

@@ -1,0 +1,148 @@
+*{
+    margin: 0;
+    padding: 0;
+    color: white;
+}
+body{
+    min-height: 100vh;
+
+}
+.app{
+    min-height: 100vh;
+    margin: auto;
+    background-color: rgb(0, 0, 0);
+}
+.title{
+    font-size: 3rem;
+    text-align: center;
+    line-height: 3;
+}
+
+.game{
+    margin-top: 5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+dialog{
+    margin: auto;
+    border-radius: 5px;
+    border: none;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 20px;
+    background-color: #000000;
+}
+form input{
+    color: black;
+    padding: 5px;
+    text-align: center;
+}
+form button{
+    background-color: rgba(0, 128, 0, 0.607);
+    width: 100px;
+    border-radius: 7px;
+}
+form button:hover{
+    background-color: rgba(0, 128, 0, 0.9);
+    transform: scale(1.1);
+}
+
+::backdrop {
+    background-color: rgb(24, 34, 40);
+    opacity: 0.7;
+}
+.board{
+    display: grid;
+    gap: 5px;    
+}
+.square{
+    box-shadow: 0 0 10px rgba(224, 224, 224, 0.5);
+    border: rgba(255, 255, 255, 0.2) 1px solid;
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.square:hover{
+    background-color: rgba(127, 255, 212, 0.342);
+}
+.playerA{
+    background-color: green;
+}
+.playerB{
+    background-color: red;
+}
+
+.sign{
+    height: 20vh;
+    margin: auto;
+    margin-top: 5vh;
+    background-color: rgba(123, 124, 123, 0.3);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.429);
+    box-shadow: 0 0 10px rgba(224, 224, 224, 0.5);
+    max-width: 300px;
+}
+.silverShadow{
+    box-shadow: 0 0 10px rgba(224, 224, 224, 0.5);
+}
+
+.buttons{
+    height:50%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    align-items: center;
+}
+svg:hover{
+    scale: 1.25;   
+    transition: transform 0.5s ease-in-out;
+    transform: rotate(360deg);
+}
+path, circle, defs{
+    color: #07870b;
+}
+.messageContainer{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    height:50%;
+}
+.message{
+    color: rgb(255, 255, 255);
+    font-size: 1rem;
+}
+.player{
+    color: rgb(255, 255, 255);
+    font-size: 2rem;
+}
+.player.playerA{
+    background-color: transparent;
+    color: green;
+}
+.player.playerB{
+    background-color: transparent;
+    color: red;
+}
+
+@media screen and (max-width: 600px){
+    .square{
+        width: 40px;
+        height: 40px;
+    }
+}
+@media screen and (max-width: 450px){
+    .square{
+        width: 30px;
+        height: 30px;
+    }
+}
