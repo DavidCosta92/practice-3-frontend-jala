@@ -1,4 +1,5 @@
 // @ts-nocheck
+import {Player} from "./player.js"
 export class TicTacToe{
     playerA
     playerB
@@ -21,11 +22,11 @@ export class TicTacToe{
         dialog.showModal();
     }
     
-    configGame(playerA, playerB, size){    
-        if(playerA != "" & playerB !="") {
+    configGame(nameA, nameB, size){    
+        if(nameA != "" & nameB !="") {
             this.gameSize = size
-            this.playerA = playerA
-            this.playerB = playerB
+            this.playerA = new Player(nameA,"playerA")  // change user style?
+            this.playerB =  new Player(nameB,"playerB")
             this.createboard()
             this.initalRandomPlayer()
         }
@@ -44,19 +45,18 @@ export class TicTacToe{
         this.board.style.gridTemplateColumns = `repeat(${this.gameSize}, 1fr)`;
         this.board.style.gridTemplateRows = `repeat(${this.gameSize}, 1fr)`;    
     }
-
     initalRandomPlayer(){
         this.userPlaying = Math.random()<0.5? this.playerA : this.playerB   
         this.message.innerHTML = "Es turno de"
-        this.playerSign.innerHTML = this.userPlaying
-        this.playerSign.classList.remove(this.userPlaying == this.playerA? "playerB" : "playerA")
-        this.playerSign.classList.add(this.userPlaying == this.playerA? "playerA" : "playerB")
+        this.playerSign.innerHTML = this.userPlaying.name
+        this.playerSign.classList.remove(this.userPlaying.gameClass) 
+        this.playerSign.classList.add(this.userPlaying.gameClass) 
     }   
     selectSquare(e){
         let square = e.target
         if(square.classList.contains("void")){
             square.classList.remove("void")
-            square.classList.add(this.userPlaying == this.playerA? "playerA" : "playerB")
+            square.classList.add(this.userPlaying == this.playerA? this.playerA.gameClass : this.playerB.gameClass)
             this.checkStatus()
             this.changeUser()
         } else{
@@ -66,13 +66,12 @@ export class TicTacToe{
     checkStatus(){
         const squares = document.getElementsByClassName("square");
         const squaresArray = Array.from(squares)
-        let playerClass = this.userPlaying == this.playerA?  "playerA" : "playerB"
-        this.checkDiagonal(squaresArray, playerClass)
-        this.checkHorizontal(squaresArray, playerClass)
-        this.checkVertical(squaresArray, playerClass)
+        this.checkDiagonal(squaresArray)
+        this.checkHorizontal(squaresArray)
+        this.checkVertical(squaresArray)
         if (squaresArray.filter(sq => sq.classList.contains("void")).length == 0) this.draw()
     }
-    checkHorizontal(squares, playerClass){  
+    checkHorizontal(squares){  
         // [0],[1],[2],[3],[4],[5],[6],[7],[8] => [ [0],[1],[2] ], [ [3],[4],[5] ], [ [6],[7],[8] ]
         let rowsArray = Array.from({length: this.gameSize}).fill().map(() => [])     
         for(let i = 0; i < Math.pow(this.gameSize,2); i++){ // this.gameSize*gameSize
@@ -81,10 +80,10 @@ export class TicTacToe{
         }
     
         rowsArray.forEach((row)=>{        
-            if ( row.every(square => square.classList.contains(playerClass)) ) this.win()
+            if ( row.every(square => square.classList.contains(this.userPlaying.gameClass)) ) this.win()
         })   
     }
-    checkVertical(squares, playerClass){
+    checkVertical(squares){
         // [0],[1],[2],[3],[4],[5],[6],[7],[8] => [ [0],[3],[6] ], [ [1],[4],[7] ], [ [2],[5],[8] ]   
         let colsArray = Array.from({length: this.gameSize}).fill().map(() => [])         
         
@@ -93,16 +92,16 @@ export class TicTacToe{
             colsArray[colIndex].push(squares[i]); 
         }
         colsArray.forEach((col)=>{ // [0],[3],[6]       
-            if ( col.every(square => square.classList.contains(playerClass)) ) this.win()
+            if ( col.every(square => square.classList.contains(this.userPlaying.gameClass)) ) this.win()
         })   
     }
-    checkDiagonal(squares, playerClass){
+    checkDiagonal(squares){
         // diagonal descendente
-        if(squares[0].classList.contains(playerClass)){ // si primero fila true
+        if(squares[0].classList.contains(this.userPlaying.gameClass)){ // si primero fila true
             let squareIndex=0
             let flag = false 
             for (let col = 0; col < this.gameSize; col ++){
-                flag = squares[squareIndex].classList.contains(playerClass) // 0, 4, 8
+                flag = squares[squareIndex].classList.contains(this.userPlaying.gameClass) // 0, 4, 8
                 if(!flag) break
                 squareIndex+=parseInt(this.gameSize)+1 
             }
@@ -110,11 +109,11 @@ export class TicTacToe{
         }
         
         // diagonal ascendete
-        if(squares[this.gameSize-1].classList.contains(playerClass)){ // ultimo de fila true
+        if(squares[this.gameSize-1].classList.contains(this.userPlaying.gameClass)){ // ultimo de fila true
             let flag = false    
             let squareIndex = this.gameSize - 1 //2
             for (let col = 0; col < this.gameSize; col ++){
-                flag = squares[squareIndex].classList.contains(playerClass) // 2, 
+                flag = squares[squareIndex].classList.contains(this.userPlaying.gameClass) // 2, 
                 if(!flag) break
                 squareIndex +=parseInt(this.gameSize)-1
             }
@@ -123,24 +122,24 @@ export class TicTacToe{
     }
 
     win(){
-        alert(`El jugador ${this.userPlaying} gano!!`)
+        alert(`El jugador ${this.userPlaying.name} gano!!`)
         confirm("Jugar nuevamente?") && this.restarGame()
     }
     draw(){
         confirm("Hubo un empate! Reiniciar partida?") && this.restarGame()
     }    
     changeUser(){
-        this.userPlaying = this.userPlaying === this.playerA? this.playerB : this.playerA
+        this.userPlaying = this.userPlaying == this.playerA? this.playerB : this.playerA
         this.message.innerHTML = "Es turno de"   
-        this.playerSign.innerHTML = this.userPlaying
-        this.playerSign.classList.remove(this.userPlaying == this.playerA? "playerB" : "playerA")
-        this.playerSign.classList.add(this.userPlaying == this.playerA? "playerA" : "playerB")
+        this.playerSign.innerHTML = this.userPlaying.name
+        this.playerSign.classList.remove(this.userPlaying == this.playerA? this.playerB.gameClass : this.playerA.gameClass) 
+        this.playerSign.classList.add(this.userPlaying == this.playerA? this.playerA.gameClass : this.playerB.gameClass) 
     }
     restarGame(){
         const squares = document.getElementsByClassName("square");
         for (let i =0; i<squares.length; i++){
-            squares[i].classList.remove("playerA")
-            squares[i].classList.remove("playerB")
+            squares[i].classList.remove(this.playerA.gameClass)
+            squares[i].classList.remove(this.playerB.gameClass)
             squares[i].classList.add("void")
         }
         this.initalRandomPlayer()

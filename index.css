@@ -124,6 +124,10 @@ path, circle, defs{
     color: rgb(255, 255, 255);
     font-size: 2rem;
 }
+.playerSign {
+    border-radius: 10px;
+    padding: 10px;
+}
 .player.playerA{
     background-color: transparent;
     color: green;
